@@ -1,8 +1,22 @@
+import * as React from 'react';
+import { Provider } from 'react-redux'
+
 import Head from 'next/head'
-import '../styles/globals.css'
 import { AppProps } from 'next/app'
 
-export default function MyApp({ Component, pageProps }) {
+import { CacheProvider } from '@emotion/react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
+import createEmotionCache from '../utils/createEmotionCache';
+import lightTheme from '../styles/theme/lightTheme';
+
+import { store } from './store/store.js';
+
+import '../styles/globals.css';
+
+const clientSideEmotionCache = createEmotionCache();
+
+export default function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }) {
   return (
     <>
       <Head>
@@ -33,7 +47,14 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#317EFB" />
 
       </Head>
-      <Component {...pageProps} />
+      <CacheProvider value={emotionCache}>
+        <Provider store={store}>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </Provider>
+      </CacheProvider>
     </>
   )
 }
