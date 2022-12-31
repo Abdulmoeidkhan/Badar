@@ -28,8 +28,8 @@ export default function Home() {
   const list = useSelector(selectList);
   const dispatch = useDispatch();
   useEffect(() => {
-    list.status == "success" && setLoading(false)
-    list.status == "idle" && setLoading(false)
+    list.status == "success" && setLoading(false);
+    list.status == "idle" && setLoading(false);
   }, [list.status])
 
   return (
@@ -37,8 +37,8 @@ export default function Home() {
       {loading ? <CircularProgress /> :
         <main>
           <Button variant="outlined" disabled={list.status == "success"} onClick={() => {
-            dispatch(listDataSliceAsync())
-            setLoading(true)
+            dispatch(listDataSliceAsync());
+            setLoading(true);
           }
           }>Get todos</Button>
           <Button variant="outlined" disabled={list.status == "idle"} onClick={() => {
