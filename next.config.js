@@ -8,5 +8,6 @@ const withPWA = require('next-pwa')({
 })
 
 module.exports = withPWA({
-  // config
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+
 })
