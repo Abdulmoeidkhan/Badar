@@ -75,7 +75,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
-  }));
+}));
 
 
 export default function PrimarySearchAppBar() {
@@ -103,15 +103,15 @@ export default function PrimarySearchAppBar() {
     };
 
     const [open, setOpen] = React.useState(false);
-  
+
     const handleDrawerOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
+
     const handleDrawerClose = () => {
-      setOpen(false);
+        setOpen(false);
     };
-  
+
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -277,7 +277,7 @@ export default function PrimarySearchAppBar() {
             >
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
-                    <ChevronLeftIcon />
+                        <ChevronLeftIcon />
                         {/* {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />} */}
                     </IconButton>
                 </DrawerHeader>
@@ -308,7 +308,6 @@ export default function PrimarySearchAppBar() {
                     ))}
                 </List>
             </Drawer>
-
         </Box>
     );
 }
