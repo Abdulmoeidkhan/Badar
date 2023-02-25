@@ -36,7 +36,6 @@ export default function Home() {
   return (
     <>
       <PrimarySearchAppBar />
-      <br />
       <div className={styles.container}>
         {loading ? <CircularProgress /> :
           <main>

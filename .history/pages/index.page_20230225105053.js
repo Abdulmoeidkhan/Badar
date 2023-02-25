@@ -34,39 +34,36 @@ export default function Home() {
   }, [list.status])
 
   return (
-    <>
+    <div className={styles.container}>
       <PrimarySearchAppBar />
-      <br />
-      <div className={styles.container}>
-        {loading ? <CircularProgress /> :
-          <main>
-            <Button variant="outlined" disabled={list.status == "success"} onClick={() => {
-              dispatch(listDataSliceAsync());
-              setLoading(true);
-            }
-            }>Get todos</Button>
-            <Button variant="outlined" disabled={list.status == "idle"} onClick={() => {
-              dispatch(clearTodos())
-            }
-            }>Clear todos</Button>
+      {loading ? <CircularProgress /> :
+        <main>
+          <Button variant="outlined" disabled={list.status == "success"} onClick={() => {
+            dispatch(listDataSliceAsync());
+            setLoading(true);
+          }
+          }>Get todos</Button>
+          <Button variant="outlined" disabled={list.status == "idle"} onClick={() => {
+            dispatch(clearTodos())
+          }
+          }>Clear todos</Button>
 
-            <List>
-              {[...list.data].map((listItem) => {
-                return (
-                  <ListItem
-                    style={{ color: `${listItem.completed ? "green" : "red"}` }}
-                    key={listItem.id}
-                  >
-                    <Chip label={`${listItem.todo} : ${listItem.completed}`} variant="outlined" />
-                    {/* <ListItemText primary={`${todo.todo} : ${todo.completed}`}/>
+          <List>
+            {[...list.data].map((listItem) => {
+              return (
+                <ListItem
+                  style={{ color: `${listItem.completed ? "green" : "red"}` }}
+                  key={listItem.id}
+                >
+                  <Chip label={`${listItem.todo} : ${listItem.completed}`} variant="outlined" />
+                  {/* <ListItemText primary={`${todo.todo} : ${todo.completed}`}/>
                 {todo.todo}:{todo.completed}. */}
-                  </ListItem >
-                );
-              })}
-            </List>
-          </main>
-        }
-      </div>
-    </>
+                </ListItem >
+              );
+            })}
+          </List>
+        </main>
+      }
+    </div>
   );
 }

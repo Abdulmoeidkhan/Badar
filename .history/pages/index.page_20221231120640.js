@@ -9,7 +9,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
-import PrimarySearchAppBar from "./components/NavBar/NavBar"
 // import ListItemText from '@mui/material/ListItemText';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,39 +33,35 @@ export default function Home() {
   }, [list.status])
 
   return (
-    <>
-      <PrimarySearchAppBar />
-      <br />
-      <div className={styles.container}>
-        {loading ? <CircularProgress /> :
-          <main>
-            <Button variant="outlined" disabled={list.status == "success"} onClick={() => {
-              dispatch(listDataSliceAsync());
-              setLoading(true);
-            }
-            }>Get todos</Button>
-            <Button variant="outlined" disabled={list.status == "idle"} onClick={() => {
-              dispatch(clearTodos())
-            }
-            }>Clear todos</Button>
+    <div className={styles.container}>
+      {loading ? <CircularProgress /> :
+        <main>
+          <Button variant="outlined" disabled={list.status == "success"} onClick={() => {
+            dispatch(listDataSliceAsync());
+            setLoading(true);
+          }
+          }>Get todos</Button>
+          <Button variant="outlined" disabled={list.status == "idle"} onClick={() => {
+            dispatch(clearTodos())
+          }
+          }>Clear todos</Button>
 
-            <List>
-              {[...list.data].map((listItem) => {
-                return (
-                  <ListItem
-                    style={{ color: `${listItem.completed ? "green" : "red"}` }}
-                    key={listItem.id}
-                  >
-                    <Chip label={`${listItem.todo} : ${listItem.completed}`} variant="outlined" />
-                    {/* <ListItemText primary={`${todo.todo} : ${todo.completed}`}/>
+          <List>
+            {[...list.data].map((listItem) => {
+              return (
+                <ListItem
+                  style={{ color: `${listItem.completed ? "green" : "red"}` }}
+                  key={listItem.id}
+                >
+                  <Chip label={`${listItem.todo} : ${listItem.completed}`} variant="outlined" />
+                  {/* <ListItemText primary={`${todo.todo} : ${todo.completed}`}/>
                 {todo.todo}:{todo.completed}. */}
-                  </ListItem >
-                );
-              })}
-            </List>
-          </main>
-        }
-      </div>
-    </>
+                </ListItem >
+              );
+            })}
+          </List>
+        </main>
+      }
+    </div>
   );
 }
